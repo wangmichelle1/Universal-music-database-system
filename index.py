@@ -8,7 +8,7 @@ import pymysql
 appObject = app.init_app()
 
 appObject.login_or_signup()
-
+ 
 appObject.update_ss()
 
 while True:
