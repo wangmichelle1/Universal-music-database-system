@@ -27,6 +27,7 @@ class App:
         self.db = db
         self.user_id = None
 
+    # User signs up/logs in to the database
     def login_or_signup(self):
         user_status = input(
             'Have you used our database before? Answer Y for yes and N for no.\n')
@@ -58,7 +59,8 @@ class App:
 
             except pymysql.Error:
                 print('Sorry, username was already taken in our system. Please enter in another username.')
-
+    
+    # Update user's streaming service 
     def update_ss(self):
         while True:
             ss = input('If you are an existing user, please enter '
@@ -87,6 +89,7 @@ class App:
                 print('This streaming service you have entered has previously already been recorded in our database '
                       'under your userId.\n')
 
+    # Prompt the user to choose what type of action they want
     def prompt_action(self):
         decision = input('Do you want to search, add, delete, update, check for stats, or exit the program?'
                          '\nPlease enter one of the following, considering it is case '
@@ -107,6 +110,7 @@ class App:
             print('Invalid option. Please try again.')
         return False
 
+    # Prompt the user to choose what type of search they want
     def search(self):
         decision = input('Do you want to search for artist, album, song, artist review, album review,'
                          ' or song review? Please enter one of the following, considering it is case'
@@ -120,6 +124,7 @@ class App:
             'SONG REVIEW': self.search_song_review
         })
 
+    # User searches artist of choice
     def search_artist(self):
         try:
             artist_interest = input('You have selected to search an artist, essentially checking if they'
@@ -132,6 +137,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User searches album of choice
     def search_album(self):
         try:
             search_interest = input('Are you interested in simply searching if an album is in our database'
@@ -174,6 +180,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User searches for song of choice
     def search_song(self):
         try:
             song_interest = input('Are you interested in simply searching if a song is in our database'
@@ -219,6 +226,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User searches for artist review
     def search_artist_review(self):
         try:
             print('You have selected to search an artist review. You can search'
@@ -248,6 +256,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User searches for album review
     def search_album_review(self):
         try:
             print('You have selected to search an album review. You can search'
@@ -272,6 +281,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User searches for song review
     def search_song_review(self):
         try:
             print('You have selected to search an song review. You can search'
@@ -296,6 +306,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # Prompts user to choose what they want to add
     def add(self):
         decision = input('Do you want to add an artist review, album review, song review, or song? '
                          'Please enter one of the following, considering it is case sensitive: ARTIST REVIEW, '
@@ -308,6 +319,7 @@ class App:
             'SONG REVIEW': self.add_song_review
         })
 
+    # User adds song
     def add_song(self):
         try:
             print('You have chosen to enter a song to the database. You will need to enter the name,'
@@ -341,6 +353,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User adds artist review
     def add_artist_review(self):
         try:
             print('You have chosen to add an artist review. You will need to provide the artist\'s name'
@@ -370,6 +383,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User adds album review
     def add_album_review(self):
         try:
             print('You have chosen to review an album. You will need to provide the name of the album, which '
@@ -397,6 +411,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User adds song review
     def add_song_review(self):
         try:
             print('You have chosen to review a song. You will need to provide the name of the song, which is required'
@@ -424,6 +439,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # Prompts user to choose what they want to delete
     def delete(self):
         decision = input('Do you want to delete an artist review, album review, song review, or song? '
                          'Please enter one of the following, considering it is case sensitive: ARTIST REVIEW, '
@@ -436,6 +452,7 @@ class App:
             'SONG REVIEW': self.delete_song_review
         })
 
+    # User deletes song
     def delete_song(self):
         try:
             print('You have chosen to delete a song. Please enter the name of the song you would like to delete.')
@@ -449,6 +466,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User deletes artist review
     def delete_artist_review(self):
         try:
             print('You have chosen to delete an artist review. Please enter'
@@ -465,6 +483,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User deletes album review
     def delete_album_review(self):
         try:
             print('You have chosen to delete an album review. Please enter'
@@ -479,6 +498,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User deletes song review
     def delete_song_review(self):
         try:
             print('You have chosen to delete a song review. Please enter the name of the song whose review you '
@@ -493,6 +513,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # Prompts user to choose what to update
     def update(self):
         print('You have chosen to update a review. Would you like to update an artist, album, or song review?')
         decision = input('\nPlease enter ARTIST, ALBUM, or SONG: ')
@@ -504,6 +525,7 @@ class App:
                    'SONG': self.update_song_review
                })
 
+    # User updates artist review
     def update_artist_review(self):
         try:
             print('You have chosen to update an artist review. You will need to provide the artist\'s name, which is '
@@ -532,6 +554,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User updates album review
     def update_album_review(self):
         try:
             print('You have chosen to update an album review. You will need to provide the album\'s name, '
@@ -559,6 +582,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User updates song review
     def update_song_review(self):
         try:
             print('You have chosen to update a song review. You will need to provide the song\'s name'
@@ -585,6 +609,7 @@ class App:
         except pymysql.Error as e:
             print(e.args[1])
 
+    # User can check stats for their profile
     def check(self):
         print('All stats are for your profile except users per streaming service.')
 
@@ -608,6 +633,7 @@ class App:
             for item in row:
                 print(item, ':', row[item])
 
+    # Close the application
     def close(self):
         self.db.close()
 
